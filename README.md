@@ -5,5 +5,5 @@
 
 ## Completed By
 
-- Student 1
-- Studnet 2
+- Christine Pham
+- Steven Inouye
