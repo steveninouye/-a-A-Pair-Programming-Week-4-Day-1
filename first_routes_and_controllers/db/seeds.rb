@@ -25,7 +25,9 @@ end
 
 
 until users.empty?
-  user = users.shuffle.pop
-  artwork = artworks.shuffle.pop
+  user = users.shuffle!.pop
+  artwork = artworks.shuffle!.pop
+  # p user
+  # p artwork
   ArtworkShare.create!(artwork_id: artwork.id, viewer_id: user.id)
 end
