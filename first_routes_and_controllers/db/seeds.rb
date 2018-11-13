@@ -6,8 +6,26 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+ArtworkShare.delete_all
+Artwork.delete_all
+User.delete_all
+
+users = []
 20.times do |num|
   username = "#{Faker::TvShows::RickAndMorty.character}#{num}"
-  p username
-  User.create!(username: username)
+  users << User.create!(username: username)
+end
+
+artworks = []
+users.each do |user|
+  title = "#{Faker::TvShows::RickAndMorty.quote}"
+  artworks << Artwork.create!(title: title, image_url: "http://image.com", artist_id: user.id)
+
+end
+
+
+until users.empty?
+  user = users.shuffle.pop
+  artwork = artworks.shuffle.pop
+  ArtworkShare.create!(artwork_id: artwork.id, viewer_id: user.id)
 end
